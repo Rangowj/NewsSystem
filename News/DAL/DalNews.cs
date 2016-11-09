@@ -48,14 +48,21 @@ namespace DAL
         public DataSet Select()
         {
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine(@"SELECT [dbo].[News_Datail].[ID]
-                            ,[dbo].[News_Sort].[NewsSortName]
-                            ,[dbo].[News_Datail].[NewsTitle]
+            sql.AppendLine(@"SELECT [dbo].[News_Datail].[ID] 
+                            ,[dbo].[News_Sort].[NewsSortName] 
+                            ,[dbo].[News_Datail].[NewsTitle] 
                             ,[dbo].[News_Datail].[CreatedTime]
                             FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID");          
             DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString());
             return ds;
         }
+
+        //public DataSet Select2()
+        //{
+        //    StringBuilder sql = new StringBuilder();
+        //    sql.AppendLine(@"
+        //                    ");
+        //}
 
         public void Update(News_Datail model)
         {

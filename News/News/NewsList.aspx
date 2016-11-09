@@ -36,26 +36,35 @@
             border-radius:4px;
             border:1px solid #c4c4c4;
         }
+        .gvNewsDatail{
+            text-align:center;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="div1"><b>新闻分类列表</b></div><br />
     <label>分类:</label>
-    <asp:DropDownList ID="DropDownList1" CssClass="ddSort" runat="server" DataSourceID="SqlDataSource1" DataTextField="NewsSortName" DataValueField="NewsSortName"></asp:DropDownList>
+    <asp:DropDownList ID="ddlSort" CssClass="ddSort" runat="server" ></asp:DropDownList>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:XMLConnectionString2 %>" SelectCommand="SELECT [NewsSortName] FROM [News_Sort]"></asp:SqlDataSource>
     <label>标题:</label>
     <asp:TextBox ID="txtTitle" CssClass="txt1" runat="server"></asp:TextBox>
-    <asp:Button ID="btnSelect" CssClass="btn1" runat="server" Text="查询" />
+    <asp:Button ID="btnSelect" CssClass="btn1" runat="server" Text="查询" OnClick="btnSelect_Click" />
     <asp:Button ID="btnAdd" CssClass="btn2" runat="server" Text="添加" OnClick="btnAdd_Click" />
     <asp:Button ID="btnDelete" CssClass="btn3" runat="server" Text="批量删除" />
 
     <br />
-    <asp:GridView ID="GridView1" runat="server">
+    <asp:GridView ID="GridView1" CssClass="gvNewsDatail" runat="server" AutoGenerateColumns="False">
         <Columns>
-            <asp:CheckBoxField HeaderText="选择" />
+             <asp:TemplateField HeaderText="选择">
+                <ItemTemplate>
+                    <asp:CheckBox ID="cbChoose" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="ID" HeaderText="新闻ID" />
             <asp:BoundField DataField="NewsSortName" HeaderText="新闻分类名称" />
+            <asp:BoundField DataField="NewsTitle" HeaderText="新闻标题" />
             <asp:BoundField DataField="CreatedTime" HeaderText="创建时间" />
+           
         </Columns>
     </asp:GridView>
     <br />

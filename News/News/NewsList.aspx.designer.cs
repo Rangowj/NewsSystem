@@ -13,13 +13,13 @@ namespace News {
     public partial class NewsList {
         
         /// <summary>
-        /// DropDownList1 控件。
+        /// ddlSort 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSort;
         
         /// <summary>
         /// SqlDataSource1 控件。
