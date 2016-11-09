@@ -9,7 +9,7 @@ namespace News
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+               
         }
 
         public int ID()
