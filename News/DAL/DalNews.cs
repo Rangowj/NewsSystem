@@ -52,7 +52,7 @@ namespace DAL
                             ,[dbo].[News_Sort].[NewsSortName] 
                             ,[dbo].[News_Datail].[NewsTitle] 
                             ,[dbo].[News_Datail].[CreatedTime]
-                            FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID");          
+                            FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID");
             DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString());
             return ds;
         }
@@ -70,6 +70,23 @@ namespace DAL
             SqlParameter[] pars = new SqlParameter[]
             {
                 new SqlParameter("@NewsTitle",model.NewsTitle)
+            };
+            DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
+            return ds;
+        }
+        public DataSet Select3(News_Datail model)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine(@"SELECT [News_Datail].[ID]
+                            ,[News_Sort].[NewsSortName]
+                            ,[News_Datail].[NewsTitle]
+                            ,[News_Datail].[CreatedTime]
+                            FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID
+                            WHERE [News_Datail].[NewsTitle] like @NewsTitle
+                            ");
+            SqlParameter[] pars = new SqlParameter[]
+            {
+                new SqlParameter("@NewsTitle","%"+model.NewsTitle+"%")
             };
             DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
             return ds;
