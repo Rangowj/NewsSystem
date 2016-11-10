@@ -60,16 +60,17 @@ namespace DAL
         public DataSet Select2(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine(@"SELECT [News_Datail].[ID]
-                            ,[News_Sort].[NewsSortName]
-                            ,[News_Datail].[NewsTitle]
-                            ,[News_Datail].[CreatedTime]
-                            FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID
-                            WHERE [News_Datail].[NewsTitle] like '%@NewsTitle%'
+            sql.AppendLine(@"SELECT News_Datail.ID
+                            ,News_Sort.NewsSortName
+                            ,News_Datail.NewsTitle
+                            ,News_Datail.CreatedTime
+                            FROM dbo.News_Datail inner join News_Sort on News_Datail.NewsSortId = News_Sort.ID
+                            WHERE News_Datail.NewsTitle like @NewsTitle and NewsSort.ID = @NewsSort.ID
                             ");
             SqlParameter[] pars = new SqlParameter[]
             {
-                new SqlParameter("@NewsTitle",model.NewsTitle)
+                new SqlParameter("@NewsSort.ID",model.NewsSortId),
+                new SqlParameter("@NewsTitle","%"+model.NewsTitle+"%")
             };
             DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
             return ds;

@@ -44,7 +44,27 @@ namespace News
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             var title = txtTitle.Text.Trim();
-            var sort = ddlSort.Text.Trim();
+            var sort = Convert.ToInt32(ddlSort.Text.Trim());
+            News_Datail model = new News_Datail
+            {
+                NewsTitle = title,
+                NewsSortId = sort
+            };
+            DataSet ds = new NewsMgr().Select3(model);
+            GridView1.DataSource = ds.Tables[0];
+            GridView1.DataBind();
         }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            Response.Redirect("NewsEdit.aspx");
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+       
     }
 }
