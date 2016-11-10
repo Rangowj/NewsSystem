@@ -57,12 +57,23 @@ namespace DAL
             return ds;
         }
 
-        //public DataSet Select2()
-        //{
-        //    StringBuilder sql = new StringBuilder();
-        //    sql.AppendLine(@"
-        //                    ");
-        //}
+        public DataSet Select2(News_Datail model)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine(@"SELECT [News_Datail].[ID]
+                            ,[News_Sort].[NewsSortName]
+                            ,[News_Datail].[NewsTitle]
+                            ,[News_Datail].[CreatedTime]
+                            FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID
+                            WHERE [News_Datail].[NewsTitle] like '%@NewsTitle%'
+                            ");
+            SqlParameter[] pars = new SqlParameter[]
+            {
+                new SqlParameter("@NewsTitle",model.NewsTitle)
+            };
+            DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
+            return ds;
+        }
 
         public void Update(News_Datail model)
         {
