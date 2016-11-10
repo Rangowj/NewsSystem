@@ -1,11 +1,8 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -65,25 +62,26 @@ namespace DAL
                             ,News_Datail.NewsTitle
                             ,News_Datail.CreatedTime
                             FROM dbo.News_Datail inner join News_Sort on News_Datail.NewsSortId = News_Sort.ID
-                            WHERE News_Datail.NewsTitle like @NewsTitle and NewsSort.ID = @NewsSort.ID
+                            WHERE NewsTitle like @NewsTitle and NewsSortId = @NewsSortId
                             ");
             SqlParameter[] pars = new SqlParameter[]
             {
-                new SqlParameter("@NewsSort.ID",model.NewsSortId),
-                new SqlParameter("@NewsTitle","%"+model.NewsTitle+"%")
+                new SqlParameter("@NewsTitle","%"+model.NewsTitle+"%"),
+                new SqlParameter("@NewsSortId",model.NewsSortId)
             };
             DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
             return ds;
         }
+
         public DataSet Select3(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine(@"SELECT [News_Datail].[ID]
-                            ,[News_Sort].[NewsSortName]
-                            ,[News_Datail].[NewsTitle]
-                            ,[News_Datail].[CreatedTime]
-                            FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID
-                            WHERE [News_Datail].[NewsTitle] like @NewsTitle
+            sql.AppendLine(@"SELECT News_Datail.ID
+                            ,News_Sort.NewsSortName
+                            ,News_Datail.NewsTitle
+                            ,News_Datail.CreatedTime
+                            FROM dbo.News_Datail inner join News_Sort on News_Datail.NewsSortId = News_Sort.ID
+                            WHERE NewsTitle like @NewsTitle 
                             ");
             SqlParameter[] pars = new SqlParameter[]
             {
@@ -92,6 +90,23 @@ namespace DAL
             DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
             return ds;
         }
+
+        //public DataSet Select4(News_Datail model)
+        //{
+        //    StringBuilder sql = new StringBuilder();
+        //    sql.AppendLine(@"SELECT NewsTitle,
+		      //                      NewsSortId,
+		      //                      News_Datail.ID
+        //                    FROM News_Datail inner join News_Sort on NewsSortId = News_Sort.ID
+        //                    where News_Datail.ID = @ID
+        //                   ");
+        //    SqlParameter[] pars = new SqlParameter[]
+        //    {
+        //        new SqlParameter("@ID",model.ID)
+        //    };
+        //    DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
+        //    return ds;
+        //}
 
         public void Update(News_Datail model)
         {

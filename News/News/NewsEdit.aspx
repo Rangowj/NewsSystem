@@ -68,14 +68,13 @@
         <tr>
             <td class="td1">新闻标题</td>
             <td class="td2">
-                <asp:TextBox ID="tbTitle" CssClass="tb1" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbTitle" CssClass="tb1" runat="server" ></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="td3">新闻分类</td>
             <th class="td4">
-                <asp:DropDownList ID="ddlSort" CssClass="ddl1" runat="server" DataSourceID="SqlDataSource1" DataTextField="NewsSortName" DataValueField="NewsSortName"></asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=DESKTOP-KUU82FJ\SQLEXPRESS;Initial Catalog=XML;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [NewsSortName] FROM [News_Sort]"></asp:SqlDataSource>
+                <asp:DropDownList ID="ddlSort" CssClass="ddl1" runat="server"></asp:DropDownList>
             </th>
         </tr>
         <tr>

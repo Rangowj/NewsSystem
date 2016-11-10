@@ -55,14 +55,21 @@ namespace News
 
         private void AddSort()
         {
-            NewsSort ns = new NewsSort()
+            if(txtSort.Text != null && txtSort.Text != "")
             {
-                NewsSortName = txtSort.Text.Trim(),
-                CreatedTime = DateTime.Now
-            };
-            nsm.Insert(ns);
-            Response.Write("<script>alert('保存成功！')</script>");
-            Response.Write("<script>window.location.href='NewsSortList.aspx';</script>");
+                 NewsSort ns = new NewsSort()
+                {
+                    NewsSortName = txtSort.Text.Trim(),
+                    CreatedTime = DateTime.Now
+                };
+                nsm.Insert(ns);
+                Response.Write("<script>alert('保存成功！')</script>");
+                Response.Write("<script>window.location.href='NewsSortList.aspx';</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('请填写要保存的分类名称！！')</script>");
+            }           
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

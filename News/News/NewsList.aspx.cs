@@ -44,20 +44,37 @@ namespace News
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             var title = txtTitle.Text.Trim();
-            var sort = Convert.ToInt32(ddlSort.Text.Trim());
-            News_Datail model = new News_Datail
+            var sort = ddlSort.Text.Trim();
+            if(sort == "全部" && title != null)
             {
-                NewsTitle = title,
-                NewsSortId = sort
-            };
-            DataSet ds = new NewsMgr().Select3(model);
-            GridView1.DataSource = ds.Tables[0];
-            GridView1.DataBind();
+                News_Datail model = new News_Datail
+                {
+                    NewsTitle = title
+                    
+                };
+                DataSet ds = new NewsMgr().Select4(model);
+                GridView1.DataSource = ds.Tables[0];
+                GridView1.DataBind();
+            }
+            else if(sort != "全部" && title != null)
+            {
+                var id = Convert.ToInt32(sort);
+                 News_Datail model = new News_Datail
+                 {
+                    NewsTitle = title,
+                    NewsSortId = id
+                 };
+                 DataSet ds = new NewsMgr().Select3(model);
+                 GridView1.DataSource = ds.Tables[0];
+                 GridView1.DataBind();
+            }
+           
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            Response.Redirect("NewsEdit.aspx");
+            int id = Convert.ToInt32(GridView1.Rows[e.NewEditIndex].Cells[1].Text);
+            Response.Redirect("NewsEdit.aspx?id="+id);
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)

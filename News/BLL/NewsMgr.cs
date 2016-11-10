@@ -52,6 +52,16 @@ namespace BLL
             return dn.Select2(model);
         }
 
+        public DataSet Select4(News_Datail model)
+        {
+            return dn.Select3(model);
+        }
+
+        //public DataSet Select5(News_Datail model)
+        //{
+        //    return dn.Select4(model);
+        //}
+
         public void Update(News_Datail model)
         {
             dn.Update(model);
