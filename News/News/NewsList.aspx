@@ -38,6 +38,8 @@
         }
         .gvNewsDatail{
             text-align:center;
+            margin-left:20px;
+            margin-top:15px;            
         }
     </style>
 </asp:Content>
@@ -50,10 +52,10 @@
     <asp:TextBox ID="txtTitle" CssClass="txt1" runat="server"></asp:TextBox>
     <asp:Button ID="btnSelect" CssClass="btn1" runat="server" Text="查询" OnClick="btnSelect_Click" />
     <asp:Button ID="btnAdd" CssClass="btn2" runat="server" Text="添加" OnClick="btnAdd_Click" />
-    <asp:Button ID="btnDelete" CssClass="btn3" runat="server" Text="批量删除" />
+    <asp:Button ID="btnDelete" CssClass="btn3" runat="server" Text="批量删除" OnClick="btnDelete_Click" />
 
     <br />
-    <asp:GridView ID="GridView1" CssClass="gvNewsDatail" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="GridView1" CssClass="gvNewsDatail" runat="server" AutoGenerateColumns="False" OnRowEditing="GridView1_RowEditing" >
         <Columns>
              <asp:TemplateField HeaderText="选择">
                 <ItemTemplate>
@@ -63,10 +65,9 @@
             <asp:BoundField DataField="ID" HeaderText="新闻ID" />
             <asp:BoundField DataField="NewsSortName" HeaderText="新闻分类名称" />
             <asp:BoundField DataField="NewsTitle" HeaderText="新闻标题" />
-            <asp:BoundField DataField="CreatedTime" HeaderText="创建时间" />
-           
+            <asp:BoundField DataField="CreatedTime" HeaderText="创建时间" />           
+             <asp:CommandField HeaderText="操作" ShowEditButton="True" />
         </Columns>
     </asp:GridView>
     <br />
-
 </asp:Content>
