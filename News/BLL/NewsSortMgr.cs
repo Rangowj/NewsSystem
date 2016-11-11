@@ -22,12 +22,7 @@ namespace BLL
         public DataSet Select(NewsSort model)
         {
             return dns.Select(model);
-        }
-
-        public int Select2(NewsSort model)
-        {
-            return dns.Select2(model);
-        }
+        }     
 
         public List<NewsSort> Select()
         {
@@ -38,7 +33,6 @@ namespace BLL
             {
                 dt = ds.Tables[0];
             }
-
             foreach (DataRow dr in dt.Rows)
             {
                 var model = new NewsSort();

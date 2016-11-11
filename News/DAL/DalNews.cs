@@ -91,23 +91,6 @@ namespace DAL
             return ds;
         }
 
-        //public DataSet Select4(News_Datail model)
-        //{
-        //    StringBuilder sql = new StringBuilder();
-        //    sql.AppendLine(@"SELECT NewsTitle,
-		      //                      NewsSortId,
-		      //                      News_Datail.ID
-        //                    FROM News_Datail inner join News_Sort on NewsSortId = News_Sort.ID
-        //                    where News_Datail.ID = @ID
-        //                   ");
-        //    SqlParameter[] pars = new SqlParameter[]
-        //    {
-        //        new SqlParameter("@ID",model.ID)
-        //    };
-        //    DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
-        //    return ds;
-        //}
-
         public void Update(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();

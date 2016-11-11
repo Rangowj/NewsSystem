@@ -36,8 +36,7 @@ namespace News
             foreach (var item in list)
             {
                 var listItem = new ListItem(item.NewsSortName, item.ID.ToString());
-                ddlSort.Items.Add(listItem);
-                
+                ddlSort.Items.Add(listItem);                
             }
         }
 

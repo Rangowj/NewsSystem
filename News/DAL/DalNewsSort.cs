@@ -59,21 +59,7 @@ namespace DAL
             DataSet ds = sh.ExecuteQuery(sql.ToString(), pars);
             return ds;
         }
-        
-        public int Select2(NewsSort model)
-        {
-            StringBuilder sql = new StringBuilder();
-            sql.AppendLine(@"SELECT [ID]
-                            FROM [dbo].[News_Sort] 
-                            WHERE NewsSortName = @NewsSortName");
-            SqlParameter[] pars = new SqlParameter[]
-            {
-                new SqlParameter("@NewsSortName",model.NewsSortName)
-            };
-            DataSet ds = sh.ExecuteQuery(sql.ToString(), pars);
-            int id = Convert.ToInt32(ds.Tables[0].Rows[0]["ID"]);
-            return id;
-        }
+              
         public DataSet Select()
         {
             StringBuilder sql = new StringBuilder();

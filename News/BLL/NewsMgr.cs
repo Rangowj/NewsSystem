@@ -9,7 +9,7 @@ namespace BLL
     public class NewsMgr
     {
 
-        DalNews dn = new DalNews();
+        DalNews dn = new DalNews();       
         public void Insert(News_Datail model)
         {
            dn .Insert(model);
@@ -57,10 +57,6 @@ namespace BLL
             return dn.Select3(model);
         }
 
-        //public DataSet Select5(News_Datail model)
-        //{
-        //    return dn.Select4(model);
-        //}
 
         public void Update(News_Datail model)
         {

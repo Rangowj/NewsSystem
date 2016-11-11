@@ -19,7 +19,7 @@
             padding-top:15px;
         }
         .div2{
-            margin-top:15px;
+            margin-top:30px;
         }
         .gvSort{
             text-align:center;
@@ -28,6 +28,7 @@
             margin-top:10px;
             width:800px;
             font-size:25px;
+            text-decoration:none;
         }
     </style>
 </asp:Content>

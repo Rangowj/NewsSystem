@@ -39,7 +39,18 @@
         .gvNewsDatail{
             text-align:center;
             margin-left:20px;
-            margin-top:15px;            
+            margin-top:15px;
+            font-size:20px; 
+            width:900px;          
+        }
+        .Edit{
+            text-decoration:none;
+            color:white;
+            padding-left:5px;
+            padding-right:5px;
+            border:1px solid RGB(22,155,213);
+            border-radius:4px;
+            background-color:RGB(22,155,213);
         }
     </style>
 </asp:Content>
@@ -66,7 +77,9 @@
             <asp:BoundField DataField="NewsSortName" HeaderText="新闻分类名称" />
             <asp:BoundField DataField="NewsTitle" HeaderText="新闻标题" />
             <asp:BoundField DataField="CreatedTime" HeaderText="创建时间" />           
-             <asp:CommandField HeaderText="操作" ShowEditButton="True" />
+            <asp:CommandField HeaderText="操作" ShowEditButton="True" >            
+             <ControlStyle CssClass="Edit" />
+             </asp:CommandField>
         </Columns>
     </asp:GridView>
     <br />

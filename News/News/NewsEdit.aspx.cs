@@ -49,20 +49,6 @@ namespace News
                 ddlSort.Items.Add(listItem);
             }
         }
-
-        //public void contentBind()
-        //{
-        //    if (Request["id"] != null)
-        //    {
-        //        int id = Convert.ToInt32(Request["id"]);
-        //        News_Datail model = new News_Datail
-        //        {
-        //            ID = id
-        //        };
-        //        DataSet ds = new NewsMgr().Select5(model);
-        //        tbTitle.Text = ds.Tables[0].Rows[0]["NewsTitle"].ToString();
-        //        ddlSort.Text = ds.Tables[0].Rows[0]["NewsSortId"].ToString();
-        //    }
-        //}
+       
     }
 }
