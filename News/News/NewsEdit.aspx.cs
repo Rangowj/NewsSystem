@@ -10,13 +10,21 @@ namespace News
     {
         protected void Page_Load(object sender, EventArgs e)
         {     
+            if(Request["id"] != null)
+            {
+                eidtBind();      
+            }
+            else
+            {
                 sortBind();
+            }
+         
         }
        
         protected void btnSave_Click(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(ddlSort.Text.Trim());
-            if (tbTitle.Text != "" && ddlSort.Text != "全部" && tbContent.Text != null)
+            if (tbTitle.Text != "" && ddlSort.Text != "全部" )
             {
                  News_Datail model = new News_Datail
                 {
@@ -50,5 +58,23 @@ namespace News
             }
         }
        
+        public void eidtBind()
+        {
+            if(Request["id"] != null)
+            {
+                int id = Convert.ToInt32(Request["id"]);
+                Public model = new Public
+                {
+                    ID = id
+                };
+                var list = new NewsMgr().Select5(model);
+                foreach( var item in list)
+                {
+                    var listItem = new ListItem(item.NewsSortName, item.NewsSortId.ToString());
+                    ddlSort.Items.Add(listItem);
+                    tbTitle.Text = item.NewsTitle;
+                }
+            }  
+        }
     }
 }

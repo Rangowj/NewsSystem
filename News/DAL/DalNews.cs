@@ -91,6 +91,24 @@ namespace DAL
             return ds;
         }
 
+        public DataSet Select4(Public model)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine(@"SELECT News_Datail.ID
+	                        ,NewsSortId
+	                        ,NewsTitle
+	                        ,NewsSortName
+                            FROM News_Datail inner join News_Sort on NewsSortId = News_Sort.ID
+                            WHERE News_Datail.ID=@ID
+                            ");
+            SqlParameter[] pars = new SqlParameter[]
+            {
+                new SqlParameter("@ID",model.ID)
+            };
+            DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(),pars);
+            return ds;
+        }
+
         public void Update(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();

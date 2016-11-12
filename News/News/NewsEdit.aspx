@@ -55,7 +55,7 @@
         .td5{
             height:400px;
         }
-        .tb2{
+        .txt1{
             width:580px;
             height:390px;
             border:none;
@@ -80,7 +80,7 @@
         <tr>
             <td class="td5">新闻内容</td>
             <td class="td6">
-                <asp:TextBox ID="tbContent" CssClass="tb2" runat="server"></asp:TextBox>
+                <textarea class="txt1"></textarea>
             </td>
         </tr>
     </table>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewsSortList.aspx.cs" Inherits="News.NewsSortList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
+    <style>       
         .div1{
             margin-top:20px;
             margin-left:20px;
@@ -29,6 +29,19 @@
             width:800px;
             font-size:25px;
             text-decoration:none;
+        }
+        .gvSort a{
+            font-size:15px;
+            text-decoration:none;
+            padding-left:15px;
+            padding-right:15px;
+            border:1px solid RGB(22,155,213);
+            border-radius:4px;
+            background-color:RGB(22,155,213);
+            color:white;
+            padding-top:5px;
+            padding-bottom:5px; 
+            line-height:32px;          
         }
     </style>
 </asp:Content>
