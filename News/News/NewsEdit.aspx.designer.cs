@@ -30,6 +30,8 @@ namespace News {
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSort;
         
+
+        
         /// <summary>
         /// btnSave 控件。
         /// </summary>

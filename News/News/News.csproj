@@ -157,6 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ckeditor\" />
+    <Folder Include="kindeditor-4.1.10\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
