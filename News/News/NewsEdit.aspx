@@ -47,7 +47,8 @@
         .tb1{
             width:700px; 
             margin-left:10px;
-            margin-right:10px;           
+            margin-right:10px; 
+            margin-top:5px;          
         }
         .td4{
             padding-bottom:7px;
@@ -56,6 +57,7 @@
             width:704px;
             padding-top:3px;
             padding-bottom:3px;
+            margin-top:5px;
         }
         .td5{
             height:400px;

@@ -23,10 +23,10 @@ namespace News
        
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            var id = Convert.ToInt32(ddlSort.Text.Trim());
             if (tbTitle.Text != "" && ddlSort.Text != "全部" )
             {
-                 News_Datail model = new News_Datail
+                var id = Convert.ToInt32(ddlSort.Text.Trim());
+                News_Datail model = new News_Datail
                 {
                     NewsTitle = tbTitle.Text,
                     NewsSortId = id,

@@ -78,7 +78,24 @@ namespace News
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {            
-            
+            for(int i = 0; i < GridView1.Rows.Count - 1; i++)
+            {
+                CheckBox cbox = (CheckBox)GridView1.Rows[i].FindControl("cbChoose");
+                if(cbox != null)
+                {
+                    if (cbox.Checked)
+                    {
+                        int id = Convert.ToInt32(GridView1.Rows[i].Cells[1].Text.Trim());
+                        News_Datail model = new News_Datail
+                        {
+                            ID = id
+                        };
+                        new NewsMgr().Delete(model);                        
+                    }
+                }
+            }
+            newsBind();
+            Response.Write("<script>alert('删除成功！')</script>");
         }
 
        
