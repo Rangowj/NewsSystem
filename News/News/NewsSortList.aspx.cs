@@ -40,6 +40,5 @@ namespace News
             int id = Convert.ToInt32(gvNewSort.Rows[e.NewEditIndex].Cells[1].Text);
             Response.Redirect("NewsSortEdit.aspx?id=" + id);
         }
-
     }
 }

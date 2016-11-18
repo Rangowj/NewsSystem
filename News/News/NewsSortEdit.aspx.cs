@@ -35,8 +35,7 @@ namespace News
             else
             {
                 UpdateSort();
-            }
-           
+            }          
         }
 
         private void UpdateSort()

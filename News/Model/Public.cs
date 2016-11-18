@@ -15,5 +15,7 @@ namespace Model
         public string NewsTitle { get; set; }
 
         public string NewsSortName { get; set; }
+
+        public string NewsContent { get; set; }
     }
 }

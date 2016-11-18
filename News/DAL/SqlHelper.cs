@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -39,6 +35,7 @@ namespace DAL
                 return conn;
             }
         }
+
         public void ExecuteNonQuery(string sql, SqlParameter[] pars = null, CommandType type = CommandType.Text)
         {
             SqlConnection conn = GetConnection();
@@ -73,7 +70,6 @@ namespace DAL
             DataSet ds = new DataSet();
             sda.Fill(ds);
             return ds;
-
         }
     }
 }

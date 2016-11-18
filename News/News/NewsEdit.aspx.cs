@@ -1,4 +1,5 @@
 ﻿using BLL;
+using CKEditor.NET;
 using Model;
 using System;
 using System.Data;
@@ -9,39 +10,71 @@ namespace News
     public partial class NewsEdit : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {     
-            if(Request["id"] != null)
+        {
+            if (!IsPostBack)
             {
-                eidtBind();      
+                if (Request["id"] != null)
+                {
+                    editBind();
+                }
+                else
+                {
+                    sortBind();
+                }
             }
-            else
-            {
-                sortBind();
-            }
-         
         }
        
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (tbTitle.Text != "" && ddlSort.Text != "全部" )
+            if(Request["id"] != null)
+            {
+                Update();
+            }
+            else
+            {
+                Insert();
+            }
+        }
+
+        public void Update()
+        {
+            var text = tbTitle.Text;
+            var text2 = CKEditorControl1.Text;
+           
+                News_Datail model = new News_Datail
+                {
+                    NewsTitle = tbTitle.Text,
+                    NewsSortId = Convert.ToInt32(ddlSort.Text.Trim()),
+                    NewsContent = CKEditorControl1.Text,
+                    CreatedTime = DateTime.Now,
+                    ID = Convert.ToInt32(Request["id"])
+                };
+                new NewsMgr().Update(model);
+                Response.Write("<script>alert('保存成功！')</script>");
+                Response.Write("<script>window.location.href='NewsList.aspx';</script>");
+            
+        }
+        public void Insert()
+        {
+            if (tbTitle.Text != "" && ddlSort.Text != "全部")
             {
                 var id = Convert.ToInt32(ddlSort.Text.Trim());
                 News_Datail model = new News_Datail
                 {
                     NewsTitle = tbTitle.Text,
                     NewsSortId = id,
-                    CreatedTime = DateTime.Now
+                    CreatedTime = DateTime.Now,
+                    NewsContent = CKEditorControl1.Text
                 };
                 new NewsMgr().Insert(model);
                 Response.Write("<script>alert('保存成功!')</script>");
-                Response.Redirect("NewsList.aspx");
+                Response.Write("<script>window.location.href='NewsList.aspx';</script>");
             }
             else
             {
                 Response.Write("<script>alert('请把所有信息填写完成!!')</script>");
             }
         }
-
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("NewsList.aspx");
@@ -58,7 +91,7 @@ namespace News
             }
         }
        
-        public void eidtBind()
+        public void editBind()
         {
             if(Request["id"] != null)
             {
@@ -73,6 +106,7 @@ namespace News
                     var listItem = new ListItem(item.NewsSortName, item.NewsSortId.ToString());
                     ddlSort.Items.Add(listItem);
                     tbTitle.Text = item.NewsTitle;
+                    CKEditorControl1.Text = item.NewsContent;
                 }
             }  
         }

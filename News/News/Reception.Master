@@ -1,0 +1,89 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Reception.master.cs" Inherits="News.Reception" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        .container,.left{
+            border:1px solid black;
+        }
+        .container{
+            width: 1300px;
+            height: 800px;
+            margin: auto;
+        }
+        .head{
+            height:80px;
+            width:100%;
+            text-align:center;
+            font-size:30px;
+            line-height:80px;
+        }
+        .left{
+            width:300px;
+            height:719px;
+            border-left:none;
+            border-bottom:0px;
+            text-align:center;
+            float:left;            
+        }
+        ul{
+            padding-left:0px;
+            list-style-type:none;
+        }
+        .top_left{
+            border-bottom:1px solid black;
+        }
+        .top_left{
+            width:100%;
+            height:50px;
+            line-height:50px;
+            font-size:20px;
+        }       
+        .all{
+            padding-bottom:10px;
+            padding-top:10px;
+            border-bottom:1px solid black;
+        }
+        .list1,.list2,.list3,.list4,.list5{
+            padding-top:10px;
+            padding-bottom:10px;
+            border-bottom:1px solid black;   
+        }
+        .right{
+            height:719px;
+            width:999px;
+            border-top:1px solid black;
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="head">新华社新闻网</div>           
+            <div class="left">
+                <div class="top_left">
+                    <b>新闻分类</b>
+                </div>
+                <div class="all">全部新闻</div>
+                <div class="list1">好日子好日子2</div>
+                <div class="list2">国内要闻</div>
+                <div class="list3">国际新闻</div>
+                <div class="list4">体育赛事</div>
+                <div class="list5">娱乐新闻</div>
+            </div>
+            <div class="right">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">      
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>    
+    </form>
+</body>
+</html>

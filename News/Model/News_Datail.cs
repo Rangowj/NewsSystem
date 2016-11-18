@@ -8,5 +8,6 @@ namespace Model
         public int NewsSortId { get; set; }
         public string NewsTitle { get; set; }
         public DateTime CreatedTime { get; set; }
+        public string NewsContent { get; set; }
      }
 }

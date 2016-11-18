@@ -20,8 +20,7 @@
         .page_container {
             width: 1300px;
             height: 800px;
-            margin: auto;
-            
+            margin: auto;     
             font-size: 30px;
         }
 
@@ -89,7 +88,6 @@
             </div>
         <div class="content_container">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
         </asp:ContentPlaceHolder>
     </div>
     </div>

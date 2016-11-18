@@ -14,16 +14,20 @@ namespace DAL
             sql.AppendLine(@"INSERT INTO [dbo].[News_Datail]
                                    ([NewsSortId]
                                    ,[NewsTitle]
-                                   ,[CreatedTime])
+                                   ,[CreatedTime]
+                                   ,[NewsContent])
                              VALUES
                                    (@NewsSortId
                                    ,@NewsTitle
-                                   ,@CreatedTime)");
+                                   ,@CreatedTime
+                                   ,@NewsContent
+                                    )");
             SqlParameter[] paras = new SqlParameter[]
             {
                 new SqlParameter("@NewsSortId", model.NewsSortId),
                 new SqlParameter("@NewsTitle", model.NewsTitle),
-                new SqlParameter("@CreatedTime", DateTime.Now)
+                new SqlParameter("@CreatedTime", DateTime.Now),
+                new SqlParameter("@NewsContent",model.NewsContent)
             };
 
             new SqlHelper().ExecuteNonQuery(sql.ToString(), paras);
@@ -49,11 +53,12 @@ namespace DAL
                             ,[dbo].[News_Sort].[NewsSortName] 
                             ,[dbo].[News_Datail].[NewsTitle] 
                             ,[dbo].[News_Datail].[CreatedTime]
+                            ,NewsSortId
                             FROM [dbo].[News_Datail] inner join [dbo].[News_Sort] on [dbo].[News_Datail].NewsSortId = [dbo].[News_Sort].ID");
             DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString());
             return ds;
         }
-
+        
         public DataSet Select2(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();
@@ -98,6 +103,7 @@ namespace DAL
 	                        ,NewsSortId
 	                        ,NewsTitle
 	                        ,NewsSortName
+                            ,NewsContent
                             FROM News_Datail inner join News_Sort on NewsSortId = News_Sort.ID
                             WHERE News_Datail.ID=@ID
                             ");
@@ -109,19 +115,37 @@ namespace DAL
             return ds;
         }
 
+        public DataSet Select5(News_Datail model)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine(@"select NewsContent
+                            from News_Datail
+                            where ID = @ID
+                                    ");
+            SqlParameter[] pars = new SqlParameter[]
+            {
+                new SqlParameter("@ID",model.ID)
+            };
+            DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
+            return ds;
+        }
         public void Update(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine(@"UPDATE [dbo].[News_Datail]
                                 SET [NewsTitle] = @NewsTitle
                                 ,[CreatedTime] = @CreatedTime
-                                WHERE NewsSortId = @NewsSortId  
+                                ,[NewsSortId] = @NewsSortId
+                                ,NewsContent = @NewsContent
+                                WHERE ID = @ID  
                             ");
             SqlParameter[] pars = new SqlParameter[]
             {
                 new SqlParameter("@NewsTitle",model.NewsTitle),
-                new SqlParameter("@NewsTitle",model.CreatedTime),
-                new SqlParameter("@NewsSortId",model.NewsSortId)
+                new SqlParameter("@CreatedTime",model.CreatedTime),
+                new SqlParameter("@NewsSortId",model.NewsSortId),
+                new SqlParameter("@NewsContent",model.NewsContent),
+                new SqlParameter("@ID",model.ID)
             };
             new SqlHelper().ExecuteNonQuery(sql.ToString(), pars);
         }

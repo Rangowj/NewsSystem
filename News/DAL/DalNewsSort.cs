@@ -68,7 +68,6 @@ namespace DAL
             return ds;
         }
 
-
         public void Update(NewsSort model)
         {
             StringBuilder sql = new StringBuilder();

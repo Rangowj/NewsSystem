@@ -10,11 +10,8 @@ namespace News
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
                 newsBind();
                 sortBind();
-            }
         }
 
         public void newsBind()
@@ -96,8 +93,6 @@ namespace News
             }
             newsBind();
             Response.Write("<script>alert('删除成功！')</script>");
-        }
-
-       
+        }     
     }
 }
