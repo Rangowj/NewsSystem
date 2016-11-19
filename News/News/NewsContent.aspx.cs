@@ -14,18 +14,27 @@ namespace News
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentBind();
+            if (!IsPostBack)
+            {
+                contentBind();
+            }
         }
 
         public void contentBind()
         {
-            if(Request["id"] != null)
+            if(Request["id"] == null)
             {
+                DataSet ds = new NewsMgr().Select6();
+                lbContent.Text = ds.Tables[0].Rows[0]["NewsContent"].ToString();
+            }
+            else
+            {
+                var id = Convert.ToInt32(Request["id"]);
                 News_Datail model = new News_Datail
                 {
-                    ID = Convert.ToInt32(Request["id"])
+                    ID = id
                 };
-                DataSet ds = new NewsMgr().Select6(model);
+                DataSet ds = new NewsMgr().Select7(model);
                 lbContent.Text = ds.Tables[0].Rows[0]["NewsContent"].ToString();
             }
         }

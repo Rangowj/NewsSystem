@@ -78,9 +78,15 @@ namespace BLL
             return list;
         }
 
-        public DataSet Select6(News_Datail model)
+        public DataSet Select6()
         {
-            DataSet ds = new DalNews().Select5(model);
+            DataSet ds = dn.Select5();
+            return ds;
+        }
+
+        public DataSet Select7(News_Datail model)
+        {
+            DataSet ds = dn.Select6(model);
             return ds;
         }
 

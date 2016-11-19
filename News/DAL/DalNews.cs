@@ -115,20 +115,32 @@ namespace DAL
             return ds;
         }
 
-        public DataSet Select5(News_Datail model)
+        public DataSet Select5()
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine(@"select NewsContent
+                            from News_Datail
+                            where ID = 2028
+                                    ");
+            DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString());
+            return ds;
+        }
+
+        public DataSet Select6(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine(@"select NewsContent
                             from News_Datail
                             where ID = @ID
-                                    ");
+                                            ");
             SqlParameter[] pars = new SqlParameter[]
             {
                 new SqlParameter("@ID",model.ID)
             };
-            DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(), pars);
+            DataSet ds = new SqlHelper().ExecuteQuery(sql.ToString(),pars);
             return ds;
         }
+
         public void Update(News_Datail model)
         {
             StringBuilder sql = new StringBuilder();
