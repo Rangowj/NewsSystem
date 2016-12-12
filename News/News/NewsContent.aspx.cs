@@ -1,12 +1,8 @@
 ﻿using BLL;
 using Model;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Net;
 
 namespace News
 {
@@ -26,6 +22,8 @@ namespace News
             {
                 DataSet ds = new NewsMgr().Select6();
                 lbContent.Text = ds.Tables[0].Rows[0]["NewsContent"].ToString();
+                lbCreatedTime.Text = Convert.ToString(ds.Tables[0].Rows[0]["CreatedTime"]);
+                lbTitle.Text = ds.Tables[0].Rows[0]["NewsTitle"].ToString();
             }
             else
             {
@@ -34,8 +32,44 @@ namespace News
                 {
                     ID = id
                 };
-                DataSet ds = new NewsMgr().Select7(model);
+                DataSet ds = new NewsMgr().SelectNewsContentById(model);
                 lbContent.Text = ds.Tables[0].Rows[0]["NewsContent"].ToString();
+                lbTitle.Text = ds.Tables[0].Rows[0]["NewsTitle"].ToString();
+                lbCreatedTime.Text = ds.Tables[0].Rows[0]["CreatedTime"].ToString();
+            }
+        }
+
+        protected void btnReply_Click(object sender, EventArgs e)
+        {
+            string userIP = null;
+            foreach(IPAddress _IPAdress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                if(_IPAdress.AddressFamily.ToString() == "InterNetwork")
+                {
+                    userIP = _IPAdress.ToString();
+                }
+            }
+            UserInfo user = (UserInfo)Session["User"];
+            if(user == null)
+            {
+                Response.Write("<script>alert('请登录！')</script>");
+                Response.Write("<script>window.location.href='Login.aspx';</script>");
+            }
+            else if(txtComment.Value == null)
+            {
+                Response.Write("<script>alert('请填写回复内容！');</script>");
+            }
+            else
+            {
+                Comment model = new Comment
+                {
+                    NewsDatailId = Convert.ToInt32(Request["id"]),
+                    CommentedContent = txtComment.Value,
+                    Commentator = user.UserName,
+                    UserIP = userIP,
+                    CreatedTime = DateTime.Now
+                };
+                new BllComment().InsertConmmentInfo(model);
             }
         }
     }

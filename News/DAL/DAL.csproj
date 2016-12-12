@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalComment.cs" />
     <Compile Include="DalNews.cs" />
     <Compile Include="DalNewsSort.cs" />
+    <Compile Include="DalUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />
   </ItemGroup>

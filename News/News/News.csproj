@@ -98,6 +98,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Demo.aspx" />
+    <Content Include="jquery-3.1.1.min.js" />
+    <Content Include="Registered.aspx" />
     <Content Include="NewsContent.aspx" />
     <Content Include="NewsTitle.aspx" />
     <Content Include="packages.config" />
@@ -106,6 +109,12 @@
     </Content>
     <Content Include="Site.Master" />
     <Content Include="Reception.Master" />
+    <Content Include="HdrDemo.ashx" />
+    <Content Include="HdrNews.ashx" />
+    <Content Include="Login.aspx" />
+    <Content Include="UpdatePW.aspx" />
+    <Content Include="奔跑.jpg" />
+    <Content Include="HdrComment.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -122,8 +131,31 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Demo.aspx.cs">
+      <DependentUpon>Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Demo.aspx.designer.cs">
+      <DependentUpon>Demo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HdrComment.ashx.cs">
+      <DependentUpon>HdrComment.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HdrDemo.ashx.cs">
+      <DependentUpon>HdrDemo.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HdrNews.ashx.cs">
+      <DependentUpon>HdrNews.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Registered.aspx.cs">
+      <DependentUpon>Registered.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registered.aspx.designer.cs">
+      <DependentUpon>Registered.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewsContent.aspx.cs">
       <DependentUpon>NewsContent.aspx</DependentUpon>
@@ -182,6 +214,20 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdatePW.aspx.cs">
+      <DependentUpon>UpdatePW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdatePW.aspx.designer.cs">
+      <DependentUpon>UpdatePW.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -197,6 +243,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{d3d092de-bb88-4a61-badd-1846bc63c4fe}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VNewsModel\VNewsModel.csproj">
+      <Project>{14a4a097-5246-4079-8c74-63485b18331b}</Project>
+      <Name>VNewsModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

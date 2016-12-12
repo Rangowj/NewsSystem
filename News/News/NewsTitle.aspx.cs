@@ -1,7 +1,4 @@
-﻿using BLL;
-using Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace News
 {
@@ -9,14 +6,7 @@ namespace News
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            titleBind();
-        }
-
-        public void titleBind()
-        {
-            List<News_Datail> title = new NewsMgr().Select();
-            gvTitle.DataSource = title;
-            gvTitle.DataBind();
+            
         }
     }
 }

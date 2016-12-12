@@ -68,13 +68,29 @@ namespace DAL
             return ds;
         }
 
+        public DataSet Select2(NewsSort model)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine(@"select NewsTitle
+	                               ,News_Datail.CreatedTime 
+                            from News_Datail inner join News_Sort on News_Datail.NewsSortId = News_Sort.ID
+                            where News_Sort.ID = @ID
+                            ");
+            SqlParameter[] pars = new SqlParameter[]
+            {
+                new SqlParameter("@ID",model.ID)
+            };
+            DataSet ds = sh.ExecuteQuery(sql.ToString(), pars);
+            return ds;
+        }
+
         public void Update(NewsSort model)
         {
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine(@"UPDATE [dbo].[News_Sort]
-                            SET [NewsSortName] = @NewsSortName
-                            ,[CreatedTime] = @CreatedTime
-                            WHERE ID=@ID");
+                sql.AppendLine(@"UPDATE [dbo].[News_Sort]
+                                SET [NewsSortName] = @NewsSortName
+                                ,[CreatedTime] = @CreatedTime
+                                WHERE ID=@ID");
             SqlParameter[] pars = new SqlParameter[]
             {
                 new SqlParameter("@NewsSortName",model.NewsSortName),

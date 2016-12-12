@@ -44,6 +44,26 @@ namespace BLL
             return list;
         }
 
+        public List<News_Datail> Select2(NewsSort model)
+        {
+            var list = new List<News_Datail>();
+            var ds = dns.Select2(model);
+            var dt = new DataTable();
+            if(ds != null && ds.Tables.Count >0)
+            {
+                dt = ds.Tables[0];
+            }
+            foreach(DataRow dr in dt.Rows)
+            {
+                var mod = new News_Datail();
+                mod.NewsTitle = Convert.ToString(dr["NewsTitle"]);
+                mod.CreatedTime = Convert.ToDateTime(dr["CreatedTime"]);
+                list.Add(mod);
+            }
+
+            return list;
+        }
+
         public void Update(NewsSort model)
         {
             dns.Update(model);

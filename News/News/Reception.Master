@@ -10,13 +10,12 @@
     </asp:ContentPlaceHolder>
 
     <style>
-        .container,.left{
+        .container{
             border:1px solid black;
         }
         .container{
             width: 1300px;
-            height: 800px;
-            margin: auto;
+            height: 2000px;
         }
         .head{
             height:80px;
@@ -27,60 +26,84 @@
         }
         .left{
             width:300px;
-            height:719px;
-            border-left:none;
-            border-bottom:0px;
+            height:1920px;
             text-align:center;
-            float:left;            
+            float:left;       
+            border-right:1px solid #000000;
+            border-top:1px solid #000000;     
         }
         ul{
             padding-left:0px;
             list-style-type:none;
         }
         .top_left{
-            border-bottom:1px solid black;
-        }
-        .top_left{
             width:100%;
             height:50px;
             line-height:50px;
             font-size:20px;
+            border-bottom:1px solid #000000;
+              
         }       
-        .all{
-            padding-bottom:10px;
-            padding-top:10px;
-            border-bottom:1px solid black;
-        }
-        .list1,.list2,.list3,.list4,.list5{
-            padding-top:10px;
-            padding-bottom:10px;
-            border-bottom:1px solid black;   
-        }
         .right{
-            height:719px;
+            height:1920px;
             width:999px;
             border-top:1px solid black;
             float:right;
+        }
+        #gvNewsSort{
+            width:300px;
+            border-left:none;
+            border-right:none;
+        }
+        th,td{
+            border-left:none;
+            border-right:none;
+            padding-top:8px;
+            padding-bottom:8px;
+        }
+        th{
+            font-weight:normal;
+        }
+        #sortList a{
+            text-decoration:none;
+            color:#000000;
+        }
+        #sortList a:hover{
+            color:#c4c4c4;
+        }
+        #sortList li{
+            padding-top:10px;
+            padding-bottom:10px;
+            border-bottom:1px solid #000000;
+        }
+        #sortList ul{
+            margin:0px;
+        }
+        .all{
+            border-bottom:1px solid #000000;
+            padding-top:10px;
+            padding-bottom:10px;
+        }
+        .newsSort{
+            margin-top:0px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <div class="head">新华社新闻网</div>           
+            <div class="head"><a href="NewsSortList.aspx" style="text-decoration:none;color:#000000;">新华社新闻网</a></div>
             <div class="left">
                 <div class="top_left">
                     <b>新闻分类</b>
                 </div>
-                <div class="all">全部新闻</div>
-                <div class="list1">好日子好日子2</div>
-                <div class="list2">国内要闻</div>
-                <div class="list3">国际新闻</div>
-                <div class="list4">体育赛事</div>
-                <div class="list5">娱乐新闻</div>
+                <div class="all">
+                    <a href="NewsTitle.aspx" style="text-decoration:none;color:#000000;">全部</a>
+                </div>
+                <ul class="newsSort" runat="server" id="sortList"></ul>
             </div>
             <div class="right">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">      
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">       
                 </asp:ContentPlaceHolder>
             </div>
         </div>    

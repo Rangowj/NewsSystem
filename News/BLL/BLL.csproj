@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BllComment.cs" />
+    <Compile Include="BllUserInfo.cs" />
     <Compile Include="NewsMgr.cs" />
     <Compile Include="NewsSortMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +55,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{d3d092de-bb88-4a61-badd-1846bc63c4fe}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VNewsModel\VNewsModel.csproj">
+      <Project>{14a4a097-5246-4079-8c74-63485b18331b}</Project>
+      <Name>VNewsModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

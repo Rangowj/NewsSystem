@@ -16,13 +16,18 @@ namespace News
 
         public void newsBind()
         {
-            DataSet ds = new NewsMgr().Select2();
-            GridView1.DataSource = ds.Tables[0];
+            var list = new NewsMgr().SelectSortList();
+            GridView1.DataSource = list;
             GridView1.DataBind();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            var user = (UserInfo)Session["User"];
+            if (user == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             Response.Redirect("NewsEdit.aspx");
         }
 
@@ -63,19 +68,28 @@ namespace News
                  DataSet ds = new NewsMgr().Select3(model);
                  GridView1.DataSource = ds.Tables[0];
                  GridView1.DataBind();
-            }
-           
+            }           
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            var user = (UserInfo)Session["User"];
+            if (user == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             int id = Convert.ToInt32(GridView1.Rows[e.NewEditIndex].Cells[1].Text);
             Response.Redirect("NewsEdit.aspx?id="+id);
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
-        {            
-            for(int i = 0; i < GridView1.Rows.Count - 1; i++)
+        {
+            var user = (UserInfo)Session["User"];
+            if (user == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            for (int i = 0; i < GridView1.Rows.Count - 1; i++)
             {
                 CheckBox cbox = (CheckBox)GridView1.Rows[i].FindControl("cbChoose");
                 if(cbox != null)

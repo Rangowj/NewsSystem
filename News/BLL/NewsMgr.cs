@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using VNewsModel;
 
 namespace BLL
 {
@@ -23,7 +24,7 @@ namespace BLL
         public List<News_Datail> Select()
         {
             var list = new List<News_Datail>();
-            var ds = dn.Select();
+            var ds = dn.SelectSortList();
             var dt = new DataTable();
             if(ds !=null && ds.Tables.Count > 0)
             {
@@ -41,9 +42,30 @@ namespace BLL
             return list;
         }
 
-        public DataSet Select2()
+        //public DataSet Select2()
+        //{
+        //    return dn.Select();
+        //}
+
+        public List<ViewNews> SelectSortList()
         {
-            return dn.Select();
+            var list = new List<ViewNews>();
+            DataSet ds = dn.SelectSortList();
+            var dt = new DataTable();
+            if(ds != null && ds.Tables.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            foreach(DataRow dr in dt.Rows)
+            {
+                var mod = new ViewNews();
+                mod.ID = Convert.ToInt32(dr["ID"]);
+                mod.NewsSortName = Convert.ToString(dr["NewsSortName"]);
+                mod.NewsTitle = Convert.ToString(dr["NewsTitle"]);
+                mod.CreatedTime = Convert.ToDateTime(dr["CreatedTime"]);
+                list.Add(mod); 
+            }
+            return list;
         }
 
         public DataSet Select3(News_Datail model)
@@ -84,15 +106,80 @@ namespace BLL
             return ds;
         }
 
-        public DataSet Select7(News_Datail model)
+        public DataSet SelectNewsContentById(News_Datail model)
         {
-            DataSet ds = dn.Select6(model);
+            DataSet ds = dn.SelectNewsContentById(model);
             return ds;
+        }
+
+        public List<News_Datail> SelectTitleInf(NewsSort model)
+        {
+            var list = new List<News_Datail>();
+            DataSet ds = new DalNewsSort().Select2(model);
+            DataTable dt = new DataTable();
+            if(ds !=null && ds.Tables.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            foreach(DataRow dr in dt.Rows)
+            {
+                var mod = new News_Datail();
+                mod.NewsTitle = Convert.ToString(dr["NewsTitle"]);
+                mod.CreatedTime = Convert.ToDateTime(dr["CreatedTime"]);
+                list.Add(mod);
+            }
+            return list;
+        }
+
+        public List<News_Datail> SelectNewsList(int NewsSortId)
+        {
+            var list = new List<News_Datail>();
+            DataSet ds = new DalNews().SelectNewsList(NewsSortId);
+            DataTable dt = new DataTable();
+            if(ds !=null&& ds.Tables.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            foreach(DataRow dr in dt.Rows)
+            {
+                var mod = new News_Datail();
+                mod.NewsTitle = Convert.ToString(dr["NewsTitle"]);
+                mod.CreatedTime = Convert.ToDateTime(dr["CreatedTime"]);
+                list.Add(mod);
+            }
+
+            return list;
         }
 
         public void Update(News_Datail model)
         {
             dn.Update(model);
+        }
+
+        public List<VNewsDatail> GetNewsList(int pageSize, int pageIndex, int NewsSortId)
+        {
+            var list = new List<VNewsDatail>();
+            DataSet ds = new DalNews().GetNewsList(pageSize, pageIndex, NewsSortId);
+            DataTable dt = new DataTable();
+            if(ds != null && ds.Tables.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            foreach(DataRow dr in dt.Rows)
+            {
+                var mod = new VNewsDatail();
+                mod.NewsTitle = Convert.ToString(dr["NewsTitle"]);
+                mod.CreatedTime = Convert.ToString(dr["CreatedTime"]);
+                mod.ID = Convert.ToInt32(dr["ID"]);
+                list.Add(mod);
+            }
+
+            return list;
+        }
+
+        public int SelectRowCount(int newsSortId)
+        {
+            return new DalNews().SelectRowCount(newsSortId);
         }
     }
 }

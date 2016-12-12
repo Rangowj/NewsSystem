@@ -24,6 +24,11 @@ namespace News
         }
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            var user = (UserInfo)Session["User"];
+            if (user == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             int id = Convert.ToInt32(gvNewSort.Rows[e.RowIndex].Cells[1].Text);
             NewsSort ns = new NewsSort()
             {
@@ -37,6 +42,11 @@ namespace News
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            var user = (UserInfo)Session["User"];
+            if (user == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             int id = Convert.ToInt32(gvNewSort.Rows[e.NewEditIndex].Cells[1].Text);
             Response.Redirect("NewsSortEdit.aspx?id=" + id);
         }

@@ -28,7 +28,12 @@ namespace News
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (Request["id"] == null)
+            var user = (UserInfo)Session["User"];
+            if (user == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else if (Request["id"] == null)
             {
                 AddSort();
             }

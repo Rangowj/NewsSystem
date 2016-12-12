@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{D3D092DE-BB88-4A61-BADD-1846BC63C4FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNewsModel", "VNewsModel\VNewsModel.csproj", "{14A4A097-5246-4079-8C74-63485B18331B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D3D092DE-BB88-4A61-BADD-1846BC63C4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3D092DE-BB88-4A61-BADD-1846BC63C4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3D092DE-BB88-4A61-BADD-1846BC63C4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A4A097-5246-4079-8C74-63485B18331B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A4A097-5246-4079-8C74-63485B18331B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A4A097-5246-4079-8C74-63485B18331B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A4A097-5246-4079-8C74-63485B18331B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
